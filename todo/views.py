@@ -33,6 +33,17 @@ def json_response(obj):
 def add_contact(request):
     name = request.POST['name']
 
+    name = name.strip()
+
+    # Can't be empty
+    if len(name) == 0:
+        return redirect('/')
+
+    # Can't already exist
+    exists = Contact.objects.filter(name=name, user=request.user)
+    if len(exists) > 0:
+        return redirect('/contact/%d' % exists[0].pk)
+
     contact = Contact(name=name, user=request.user)
     contact.save()
 
