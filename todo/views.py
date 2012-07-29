@@ -96,6 +96,7 @@ def search(request):
     return render_to_response("home.html", {
             "contacts": contacts,
             "filter": 'search',
+            "today": datetime.date.today()
         },
         context_instance = RequestContext(request)
     )
@@ -129,6 +130,7 @@ def filter(request):
     return render_to_response("home.html", {
             "contacts": contacts,
             "filter": filter_type,
+            "today": datetime.date.today()
         },
         context_instance = RequestContext(request)
     )
