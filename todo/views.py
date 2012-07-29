@@ -89,7 +89,7 @@ def filter(request):
         delta = None
 
         if filter_type == "day":
-            delta = datetime.timedelta(days=1)
+            delta = datetime.timedelta(hours=1)
         elif filter_type == "week":
             delta = datetime.timedelta(weeks=1)
         elif filter_type == "twoweeks":
@@ -98,17 +98,16 @@ def filter(request):
             delta = datetime.timedelta(weeks=4)
         elif filter_type == "twomonths":
             delta = datetime.timedelta(weeks=8)
-
-        print datetime.date.today()
+        else:
+            filter_type = "all"
 
         if delta:
             limit = datetime.date.today() + delta
-            print limit
-
             contacts = contacts.filter(date__lte=limit)
 
     return render_to_response("home.html", {
-            "contacts": contacts
+            "contacts": contacts,
+            "filter": filter_type,
         },
         context_instance = RequestContext(request)
     )
@@ -128,7 +127,8 @@ def index(request):
     contacts = Contact.objects.filter(user=request.user).order_by('date')
 
     return render_to_response("home.html", {
-			"contacts": contacts
+			"contacts": contacts,
+            "filter": "all"
         },
         context_instance = RequestContext(request)
     )

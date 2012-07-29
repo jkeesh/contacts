@@ -19,4 +19,13 @@ $(document).ready(function(){
 
 
 	});
+
+
+	$(".filter-buttons .btn").click(function(){
+		$this = $(this);
+		console.log($this);
+
+		var filter = $this.attr('data-filter');
+		window.location.href = '/filter?filter='+filter;
+	})
 });
