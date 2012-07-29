@@ -7,8 +7,6 @@ if platform.node() == "madness":
 else:
     LOCAL = True
 
-print "Is local ?", LOCAL
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
