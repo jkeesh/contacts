@@ -28,7 +28,9 @@
 <div class="notes">
 {% for note in notes %}
 	<div class="note">
-		{{ note.text }}
+		<div class="text">{{ note.text }}</div>
+
+		<div class= "timestamp">{{note.timestamp}}</div>
 	</div>
 {% endfor %}
 </div>

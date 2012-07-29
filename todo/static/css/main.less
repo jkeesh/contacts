@@ -45,21 +45,24 @@
   .name{
     font-size: 22px;
     line-height: 40px;
-    padding: 10px;
+    padding: 10px 0;
     font-weight: bold;
+    float: left;
   }
 
   input{
     width: 70px;
-    margin-left: 10px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 14px;
   }
+  overflow: hidden;
 }
 
 #add-note{
   .add-title{
-        font-size: 22px;
+    font-size: 22px;
     line-height: 40px;
-    margin-top: 15px;
   }
 
   textarea{
@@ -73,10 +76,20 @@
     padding: 8px;
     width: 500px;
   
+    .timestamp{
+      float: right;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    overflow: hidden;
   }
 
   .note:nth-child(odd){
       background-color: #ccc;
+      .timestamp{
+        color: black;
+      }
   }
 }
 
