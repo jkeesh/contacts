@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-home page
+
+<div id="add-new">
+	<div class="add-title">Add New Contact</div>
+	<form action="/add" method="post">
+		{% csrf_token %}
+		<div>
+			Name: <input type="text" name="name" />
+		</div>
+		<div>
+			<input type="submit" class="btn primary" value="Add!" />
+		</div>
+	</form>
+</div>
+
+<div id="contact-list">
+	{% for contact in contacts %}
+		<div class="contact">
+			<a href="/contact/{{contact.id}}">	
+				<div class="name">{{ contact.name}}</div>
+			</a>
+			<input type="text" class="datepicker" 
+				value="{{ contact.date|date:"m/d/y"}}" 
+				data-date-format="mm/dd/yy" 
+				data-contact-id="{{contact.id}}" />
+		</div>
+	{% endfor %}
+</div>
+
 {% endblock %}

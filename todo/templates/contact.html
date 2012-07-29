@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="contact">
+	<div class="name">{{contact.name}}</div>
+	<input type="text" class="datepicker" 
+		value="{{ contact.date|date:"m/d/y"}}" 
+		data-date-format="mm/dd/yy" 
+		data-contact-id="{{contact.id}}" />
+</div>
+
+<div id="add-note">
+	<div class="add-title">Add Note</div>
+	<form action="/add_note" method="post">
+		{% csrf_token %}
+		<div>
+			Note: <textarea name="note"></textarea>
+		</div>
+
+		<input type="hidden" name="c_id" value="{{contact.id}}" />
+		<div>
+			<input type="submit" class="btn primary" value="Submit!" />
+		</div>
+	</form>
+</div>
+
+<div class="notes">
+{% for note in notes %}
+	<div class="note">
+		{{ note.text }}
+	</div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -6,17 +6,19 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
 	(r'^$', 'todo.views.index'),
+
+    ## User Auth
 	(r'^register$', 'todo.views.register'),
 	(r'^login/?$', "todo.views.login"),
     (r'^logout/?$', "todo.views.logout"),
 
+    ## Contact
+    (r'^add/?$', 'todo.views.add_contact'),
+    (r'^contact/(?P<c_id>[\d]+)/$', 'todo.views.contact'),
+    (r'^add_note/?$', 'todo.views.add_note'),
+    (r'^change_date/?$', 'todo.views.change_date'),
 
-    # Example:
-    # (r'^contacts/', include('contacts.foo.urls')),
-
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^filter/?$', 'todo.views.filter'),
 
     (r'^admin/', include(admin.site.urls)),
 )
