@@ -15,7 +15,7 @@
 	<form action="/add_note" method="post">
 		{% csrf_token %}
 		<div>
-			Note: <textarea name="note"></textarea>
+			<textarea name="note"></textarea>
 		</div>
 
 		<input type="hidden" name="c_id" value="{{contact.id}}" />
