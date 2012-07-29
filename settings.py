@@ -2,6 +2,7 @@
 import platform
 import secrets
 
+## Determine local or live
 if platform.node() == "madness":
     LOCAL = False
 else:
