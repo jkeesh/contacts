@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+	// Save the new date for the contact when you change the date with datepicker.
 	$(".datepicker").datepicker().on('changeDate', function(ev){
 		var newDate = $(this).val();
 		console.log(newDate);
@@ -21,6 +23,7 @@ $(document).ready(function(){
 	});
 
 
+	// When you click a button go to the proper filter page
 	$(".filter-buttons .btn").click(function(){
 		$this = $(this);
 		console.log($this);
@@ -29,14 +32,10 @@ $(document).ready(function(){
 		window.location.href = '/filter?filter='+filter;
 	});
 
-//
-//   var converter = new Markdown.Converter();
-//   var html = converter.makeHtml(text);
-//
-//   alert(html);
 
+
+	// Make all notes use Markdown
 	var converter = new Markdown.Converter();
-
 
 	$(".note .text").each(function(idx, elem){
 		$this = $(this);
