@@ -1,17 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="add-new">
-	<div class="add-title">Add New Contact</div>
-	<form action="/add" method="post">
-		{% csrf_token %}
-		<div>
-			Name: <input type="text" name="name" />
-		</div>
-		<div>
-			<input type="submit" class="btn primary" value="Add!" />
-		</div>
-	</form>
+<div class="forms">
+	<div id="add-new" class="form">
+		<div class="title">Add New Contact</div>
+		<form action="/add" method="post">
+			{% csrf_token %}
+			<div>
+				Name: <input type="text" name="name" />
+			</div>
+			<div>
+				<input type="submit" class="btn primary" value="Add!" />
+			</div>
+		</form>
+	</div>
+
+	<div id="search" class="form">
+		<div class="title">Search</div>
+		<form action="/search" method="get">
+			{% csrf_token %}
+			<div>
+				Name: <input type="text" name="name" />
+			</div>
+			<div>
+				<input type="submit" class="btn primary" value="Search!" />
+			</div>
+		</form>
+	</div>
+
 </div>
 
 <div class="btn-group filter-buttons" data-toggle="buttons-radio">
