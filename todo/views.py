@@ -78,6 +78,23 @@ def change_date(request):
         'status': 'ok'
     })
 
+################################################################
+#
+#   Filter and Search
+#
+################################################################
+
+def search(request):
+    query = request.GET['name']
+    contacts = Contact.objects.filter(user=request.user, name__icontains=query).order_by('date')
+
+
+    return render_to_response("home.html", {
+            "contacts": contacts,
+            "filter": 'search',
+        },
+        context_instance = RequestContext(request)
+    )
 
 def filter(request):
 

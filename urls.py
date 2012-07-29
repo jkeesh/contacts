@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     (r'^change_date/?$', 'todo.views.change_date'),
 
     (r'^filter/?$', 'todo.views.filter'),
+    (r'^search/?$', 'todo.views.search'),
 
     (r'^admin/', include(admin.site.urls)),
 )

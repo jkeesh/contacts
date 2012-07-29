@@ -18,9 +18,8 @@
 	<div id="search" class="form">
 		<div class="title">Search</div>
 		<form action="/search" method="get">
-			{% csrf_token %}
 			<div>
-				Name: <input type="text" name="name" />
+				<input type="text" name="name" />
 			</div>
 			<div>
 				<input type="submit" class="btn primary" value="Search!" />
