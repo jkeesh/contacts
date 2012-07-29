@@ -16,12 +16,12 @@ framework.
 import os
 import sys
 
-sys.path.append('/home/jkeesh/sites/contacts/')
+sys.path.append('/home/jkeesh/sites/')
 
 # This way print statements don't break our code
 sys.stdout = sys.stderr
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "contacts.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
