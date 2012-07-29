@@ -16,6 +16,7 @@ framework.
 import os
 import sys
 
+sys.path.append('/home/jkeesh/sites/contacts')
 sys.path.append('/home/jkeesh/sites/')
 
 # This way print statements don't break our code
