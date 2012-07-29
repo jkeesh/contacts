@@ -31,17 +31,9 @@
                 </a>
                 <a class="brand" href="/">Contacts</a>
                 <div class="nav-collapse">
-                    <ul class="nav">
-<!--                         <li>
-                            <a href="/editor">Code Editor</a>
-                        </li>
-
- -->
-                    </ul>
-
                     <ul class="nav pull-right">
                         {% if user.is_authenticated %}
-                        <li><a href="/user/{{user.id}}">{{ user.first_name }} {{ user.last_name }}</a></li>
+                        <li><a href="#">{{ user.first_name }} {{ user.last_name }}</a></li>
                         <li><a href="/logout">Logout</a></li>
                         {% endif %}
                     </ul>
