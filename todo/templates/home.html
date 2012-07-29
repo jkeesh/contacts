@@ -41,7 +41,7 @@
 
 <div id="contact-list">
 	{% for contact in contacts %}
-		<div class="contact">
+		<div class="contact {% if contact.date < today %}overdue{% endif %}">
 			<a href="/contact/{{contact.id}}">	
 				<div class="name">{{ contact.name}}</div>
 			</a>

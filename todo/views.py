@@ -149,7 +149,8 @@ def index(request):
 
     return render_to_response("home.html", {
 			"contacts": contacts,
-            "filter": "all"
+            "filter": "all",
+            "today": datetime.date.today()
         },
         context_instance = RequestContext(request)
     )
