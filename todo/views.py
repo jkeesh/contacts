@@ -47,7 +47,7 @@ def add_contact(request):
     contact = Contact(name=name, user=request.user)
     contact.save()
 
-    return redirect('/')
+    return redirect('/contact/%d' % contact.pk)
 
 def contact(request, c_id):
     c = Contact.objects.get(pk=c_id)
