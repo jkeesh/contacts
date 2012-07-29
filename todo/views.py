@@ -55,6 +55,10 @@ def add_note(request):
     note = request.POST['note']
     c_id = request.POST['c_id']
 
+    note = note.strip()
+    if len(note) == 0:
+        return redirect('/contact/%s' % c_id)        
+
     contact = Contact.objects.get(pk=c_id)
     note = Note(text=note, contact=contact)
     note.save()
