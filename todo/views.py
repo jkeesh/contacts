@@ -7,12 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
 
-from todo.forms import RegistrationForm
+from contacts.todo.forms import RegistrationForm
 
 from django.contrib.auth.models import User
-from todo.models import UserProfile
-from todo.models import Contact
-from todo.models import Note
+from contacts.todo.models import UserProfile
+from contacts.todo.models import Contact
+from contacts.todo.models import Note
 
 from django.utils import simplejson
 
