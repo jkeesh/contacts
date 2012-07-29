@@ -24,7 +24,7 @@ class Contact(models.Model):
 	name			=		models.CharField(max_length=100)	# The contacts name
 
 	# Next time to check in, default is one week from today
-	date			=		models.DateField(default=datetime.date.today() + timedelta(weeks=1))					
+	date			=		models.DateField(default=datetime.date.today())					
 
 
 class Note(models.Model):
