@@ -27,5 +27,21 @@ $(document).ready(function(){
 
 		var filter = $this.attr('data-filter');
 		window.location.href = '/filter?filter='+filter;
-	})
+	});
+
+//
+//   var converter = new Markdown.Converter();
+//   var html = converter.makeHtml(text);
+//
+//   alert(html);
+
+	var converter = new Markdown.Converter();
+
+
+	$(".note .text").each(function(idx, elem){
+		$this = $(this);
+		var old = $this.html();
+		var html = converter.makeHtml(old);
+		$this.html(html);
+	});
 });
