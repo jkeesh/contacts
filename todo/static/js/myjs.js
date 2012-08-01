@@ -3,7 +3,10 @@ $(document).ready(function(){
 	// Save the new date for the contact when you change the date with datepicker.
 	$(".datepicker").datepicker().on('changeDate', function(ev){
 		var newDate = $(this).val();
-		console.log(newDate);
+		if(newDate.length == 0){
+//			console.log("no date");
+			newDate = $(this).attr('data-date');
+		}
 
 		$.ajax({
 			url: '/change_date',
@@ -26,10 +29,26 @@ $(document).ready(function(){
 	// When you click a button go to the proper filter page
 	$(".filter-buttons .btn").click(function(){
 		$this = $(this);
-		console.log($this);
-
 		var filter = $this.attr('data-filter');
 		window.location.href = '/filter?filter='+filter;
+	});
+
+
+	// When you click the done button mark the users date as done
+	$('.done-button').click(function(){
+		$this = $(this);
+		$.ajax({
+			url: '/contact_done',
+			data: {
+				c_id: $this.attr('data-contact-id')
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function(resp){
+				console.log(resp);
+				window.location.reload();
+			}
+		});
 	});
 
 

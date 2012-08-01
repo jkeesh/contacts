@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^contact/(?P<c_id>[\d]+)/$', 'todo.views.contact'),
     (r'^add_note/?$', 'todo.views.add_note'),
     (r'^change_date/?$', 'todo.views.change_date'),
+    (r'^contact_done/?$', 'todo.views.contact_done'),
 
     (r'^filter/?$', 'todo.views.filter'),
     (r'^search/?$', 'todo.views.search'),

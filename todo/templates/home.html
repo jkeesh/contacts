@@ -42,15 +42,31 @@
 <div id="contact-list">
 	{% for contact in contacts %}
 		<div class="contact {% if contact.date < today %}overdue{% endif %}">
-			<a href="/contact/{{contact.id}}">	
+			<a href="/contact/{{contact.id}}" class="link">	
 				<div class="name">{{ contact.name}}</div>
 			</a>
 			<input type="text" class="datepicker" 
 				value="{{ contact.date|date:"m/d/y"}}" 
 				data-date-format="mm/dd/yy" 
 				data-contact-id="{{contact.id}}" />
+			<button class="btn done-button" data-contact-id="{{contact.id}}">Done!</button>
 		</div>
 	{% endfor %}
+	{% if filter == 'all' %}
+		{% for contact in done_contacts %}
+		<div class="contact {% if contact.date < today %}overdue{% endif %}">
+			<a href="/contact/{{contact.id}}" class="link">	
+				<div class="name">{{ contact.name}}</div>
+			</a>
+			<a href="#" 
+				class="datepicker btn" 
+				data-date="{{ today|date:"m/d/y"}}" 
+				data-date-format="mm/dd/yy" 
+				data-contact-id="{{contact.id}}">Set</a>
+
+		</div>
+		{% endfor %}
+	{% endif %}
 </div>
 
 {% endblock %}

@@ -57,7 +57,8 @@ def contact(request, c_id):
 
     return render_to_response("contact.html", {
             "contact": c,
-            "notes": c.note_set.all().order_by('-timestamp')
+            "notes": c.note_set.all().order_by('-timestamp'),
+            "today": datetime.date.today(),
         },
         context_instance = RequestContext(request)
     )
@@ -93,6 +94,18 @@ def change_date(request):
         'status': 'ok'
     })
 
+
+def contact_done(request):
+    c_id = request.POST['c_id']
+    contact = Contact.objects.get(pk=c_id)
+
+    contact.date = None
+    contact.save()
+
+    return json_response({
+        'status': 'ok'
+    })
+
 ################################################################
 #
 #   Filter and Search
@@ -114,7 +127,7 @@ def search(request):
 
 def filter(request):
 
-    contacts = Contact.objects.filter(user=request.user).order_by('date')
+    contacts = Contact.objects.filter(user=request.user).order_by('date').exclude(date=None)
 
     if 'filter' in request.GET:
         filter_type = request.GET['filter']
@@ -141,7 +154,8 @@ def filter(request):
     return render_to_response("home.html", {
             "contacts": contacts,
             "filter": filter_type,
-            "today": datetime.date.today()
+            "today": datetime.date.today(),
+            "done_contacts": Contact.objects.filter(date=None),
         },
         context_instance = RequestContext(request)
     )
@@ -158,7 +172,7 @@ def index(request):
     if not request.user.is_authenticated():
         return register(request)
 
-    contacts = Contact.objects.filter(user=request.user).order_by('date')
+    contacts = Contact.objects.filter(user=request.user).order_by('date').exclude(date=None)
 
     return render_to_response("home.html", {
 			"contacts": contacts,

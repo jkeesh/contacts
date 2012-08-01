@@ -4,10 +4,19 @@
 
 <div id="contact">
 	<div class="name">{{contact.name}}</div>
+	{% if contact.date %}
 	<input type="text" class="datepicker" 
 		value="{{ contact.date|date:"m/d/y"}}" 
 		data-date-format="mm/dd/yy" 
 		data-contact-id="{{contact.id}}" />
+	{% else %}
+	<a href="#" 
+		class="datepicker btn small" 
+		data-date="{{ today|date:"m/d/y"}}" 
+		data-date-format="mm/dd/yy" 
+		data-contact-id="{{contact.id}}">Set</a>
+
+	{% endif %}
 </div>
 
 <div id="add-note">
