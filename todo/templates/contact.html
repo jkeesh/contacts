@@ -9,6 +9,7 @@
 		value="{{ contact.date|date:"m/d/y"}}" 
 		data-date-format="mm/dd/yy" 
 		data-contact-id="{{contact.id}}" />
+	<button class="contact btn done-button" data-contact-id="{{contact.id}}">Done!</button>
 	{% else %}
 	<a href="#" 
 		class="datepicker btn small" 
