@@ -2,16 +2,18 @@ $(document).ready(function(){
 
 	// Save the new date for the contact when you change the date with datepicker.
 	$(".datepicker").datepicker().on('changeDate', function(ev){
-		var newDate = $(this).val();
-		if(newDate.length == 0){
-//			console.log("no date");
-			newDate = $(this).attr('data-date');
+
+		function getDateString(date){
+			var month = date.getMonth() + 1;
+			var dayOfMonth = date.getDate();
+			var year = date.getFullYear() - 2000;
+			return month + '/' + dayOfMonth + '/' + year;
 		}
 
 		$.ajax({
 			url: '/change_date',
 			data: {
-				date: newDate,
+				date: getDateString(ev.date),
 				c_id: $(this).attr('data-contact-id')
 			},
 			type: 'POST',
