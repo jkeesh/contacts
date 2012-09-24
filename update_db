@@ -1,0 +1,5 @@
+#!/bin/sh
+ssh jkeesh@thekeesh.com "mysqldump -uroot -p contacts > /home/jkeesh/dbs/contacts-temp"
+scp jkeesh@thekeesh.com:/home/jkeesh/dbs/contacts-temp contactsdb
+mysql -uroot contacts < contactsdb;
+rm contactsdb;

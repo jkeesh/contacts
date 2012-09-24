@@ -20,23 +20,37 @@ MANAGERS = ADMINS
 if LOCAL:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'contacts',                      # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'django.db.backends.mysql',
+            # Add 'postgresql_psycopg2', 'postgresql',
+            # 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'contacts',
+            # Or path to database file if using sqlite3.
+            'USER': 'root',
+            # Not used with sqlite3.
+            'PASSWORD': '',
+            # Not used with sqlite3.
+            'HOST': '',
+            # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',
+            # Set to empty string for default. Not used with sqlite3.
         }
     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'contacts',                      # Or path to database file if using sqlite3.
-            'USER': secrets.DB_USER,                      # Not used with sqlite3.
-            'PASSWORD': secrets.DB_PASSWORD,                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'django.db.backends.mysql',
+            # Add 'postgresql_psycopg2', 'postgresql',
+            #'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'contacts',
+            # Or path to database file if using sqlite3.
+            'USER': secrets.DB_USER,
+            # Not used with sqlite3.
+            'PASSWORD': secrets.DB_PASSWORD,
+            # Not used with sqlite3.
+            'HOST': '',
+            # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',
+            # Set to empty string for default. Not used with sqlite3.
         }
     }
 
@@ -86,7 +100,7 @@ SECRET_KEY = 'nqiwo*!lc=+!u19u)kxfw2a+r60x3&r#)cf%%od=zhskro60qw'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,7 +114,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'contacts.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here, like "/home/html/django_templates" or
+    # "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )

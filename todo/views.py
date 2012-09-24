@@ -18,11 +18,14 @@ from django.utils import simplejson
 
 import datetime
 
+
 def json_response(obj):
     """
-    Helper method to turn a python object into json format and return an HttpResponse object.
+    Helper method to turn a python object into json format and return
+    an HttpResponse object.
     """
-    return HttpResponse(simplejson.dumps(obj), mimetype="application/x-javascript")
+    return HttpResponse(simplejson.dumps(obj),
+                        mimetype="application/x-javascript")
 
 
 ################################################################
@@ -49,6 +52,7 @@ def add_contact(request):
 
     return redirect('/contact/%d' % contact.pk)
 
+
 def contact(request, c_id):
     c = Contact.objects.get(pk=c_id)
     if c.user != request.user:
@@ -56,12 +60,13 @@ def contact(request, c_id):
         return redirect('/')
 
     return render_to_response("contact.html", {
-            "contact": c,
-            "notes": c.note_set.all().order_by('-timestamp'),
-            "today": datetime.date.today(),
-        },
-        context_instance = RequestContext(request)
+        "contact": c,
+        "notes": c.note_set.all().order_by('-timestamp'),
+        "today": datetime.date.today(),
+    },
+        context_instance=RequestContext(request)
     )
+
 
 def add_note(request):
     note = request.POST['note']
@@ -69,13 +74,14 @@ def add_note(request):
 
     note = note.strip()
     if len(note) == 0:
-        return redirect('/contact/%s' % c_id)        
+        return redirect('/contact/%s' % c_id)
 
     contact = Contact.objects.get(pk=c_id)
     note = Note(text=note, contact=contact)
     note.save()
 
     return redirect('/contact/%s' % c_id)
+
 
 def change_date(request):
 
@@ -112,22 +118,25 @@ def contact_done(request):
 #
 ################################################################
 
+
 def search(request):
     query = request.GET['name']
-    contacts = Contact.objects.filter(user=request.user, name__icontains=query).order_by('date')
-
+    contacts = Contact.objects.filter(
+        user=request.user, name__icontains=query).order_by('date')
 
     return render_to_response("home.html", {
-            "contacts": contacts,
-            "filter": 'search',
-            "today": datetime.date.today()
-        },
-        context_instance = RequestContext(request)
+        "contacts": contacts,
+        "filter": 'search',
+        "today": datetime.date.today()
+    },
+        context_instance=RequestContext(request)
     )
+
 
 def filter(request):
 
-    contacts = Contact.objects.filter(user=request.user).order_by('date').exclude(date=None)
+    contacts = Contact.objects.filter(
+        user=request.user).order_by('date').exclude(date=None)
 
     if 'filter' in request.GET:
         filter_type = request.GET['filter']
@@ -152,12 +161,12 @@ def filter(request):
             contacts = contacts.filter(date__lte=limit)
 
     return render_to_response("home.html", {
-            "contacts": contacts,
-            "filter": filter_type,
-            "today": datetime.date.today(),
-            "done_contacts": Contact.objects.filter(date=None),
-        },
-        context_instance = RequestContext(request)
+        "contacts": contacts,
+        "filter": filter_type,
+        "today": datetime.date.today(),
+        "done_contacts": Contact.objects.filter(date=None),
+    },
+        context_instance=RequestContext(request)
     )
 
 
@@ -172,15 +181,22 @@ def index(request):
     if not request.user.is_authenticated():
         return register(request)
 
-    contacts = Contact.objects.filter(user=request.user).order_by('date').exclude(date=None)
+    contacts = Contact.objects.filter(
+        user=request.user).order_by('date').exclude(date=None)
+
+    # I want the home page to be todays contacts
+    delta = datetime.timedelta(hours=1)
+    limit = datetime.date.today() + delta
+    contacts = contacts.filter(date__lte=limit)
 
     return render_to_response("home.html", {
-			"contacts": contacts,
-            "filter": "all",
-            "today": datetime.date.today()
-        },
-        context_instance = RequestContext(request)
+        "contacts": contacts,
+        "filter": "day",
+        "today": datetime.date.today()
+    },
+        context_instance=RequestContext(request)
     )
+
 
 def register(request):
     if request.method == 'POST':
@@ -191,8 +207,8 @@ def register(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
 
-            user = User.objects.create_user(email, #email is username
-                                            email, #email
+            user = User.objects.create_user(email,  # email is username
+                                            email,  # email
                                             password)
             user.first_name = first_name
             user.last_name = last_name
@@ -206,19 +222,20 @@ def register(request):
             return authenticate(request, email, password)
     else:
         form = RegistrationForm()
-    
+
     return render_to_response("login.html", {
-            'form': form,
-        },
-        context_instance = RequestContext(request)
+        'form': form,
+    },
+        context_instance=RequestContext(request)
     )
+
 
 def authenticate(request, email, password):
     user = auth.authenticate(username=email, password=password)
     if user is not None:
         if not user.is_active:
             auth.logout(request)
-            return redirect('/') 
+            return redirect('/')
 
         auth.login(request, user)
 
@@ -227,23 +244,26 @@ def authenticate(request, email, password):
             del request.session['next']
             return redirect(next)
 
-        return redirect('/') 
+        return redirect('/')
     else:
         form = RegistrationForm()
         return render_to_response("login.html", {
-                'login_error': True, # indicates username / pword did not match
-                'form': form,
-            },
-            context_instance = RequestContext(request)
+            'login_error': True,  # indicates username / pword did not match
+            'form': form,
+        },
+            context_instance=RequestContext(request)
         )
-        
+
+
 @login_required
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
+
 @csrf_protect
 def login(request):
     if request.method == "POST":
-        return authenticate(request, request.POST['email'], request.POST['password'])
+        return authenticate(request, request.POST['email'],
+                            request.POST['password'])
     return redirect('/')

@@ -5,22 +5,22 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-	(r'^$', 'todo.views.index'),
+                       (r'^$', 'todo.views.index'),
 
-    ## User Auth
-	(r'^register$', 'todo.views.register'),
-	(r'^login/?$', "todo.views.login"),
-    (r'^logout/?$', "todo.views.logout"),
+                       ## User Auth
+                       (r'^register$', 'todo.views.register'),
+                       (r'^login/?$', "todo.views.login"),
+                       (r'^logout/?$', "todo.views.logout"),
 
-    ## Contact
-    (r'^add/?$', 'todo.views.add_contact'),
-    (r'^contact/(?P<c_id>[\d]+)/$', 'todo.views.contact'),
-    (r'^add_note/?$', 'todo.views.add_note'),
-    (r'^change_date/?$', 'todo.views.change_date'),
-    (r'^contact_done/?$', 'todo.views.contact_done'),
+                       ## Contact
+                       (r'^add/?$', 'todo.views.add_contact'),
+                       (r'^contact/(?P<c_id>[\d]+)/$', 'todo.views.contact'),
+                       (r'^add_note/?$', 'todo.views.add_note'),
+                       (r'^change_date/?$', 'todo.views.change_date'),
+                       (r'^contact_done/?$', 'todo.views.contact_done'),
 
-    (r'^filter/?$', 'todo.views.filter'),
-    (r'^search/?$', 'todo.views.search'),
+                       (r'^filter/?$', 'todo.views.filter'),
+                       (r'^search/?$', 'todo.views.search'),
 
-    (r'^admin/', include(admin.site.urls)),
-)
+                       (r'^admin/', include(admin.site.urls)),
+                       )
