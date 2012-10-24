@@ -33,6 +33,13 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="/">Contacts</a>
+
+                {% if user.is_authenticated %}
+                    <form action="/search" method="get">
+                        <input type="text" name="name" placeholder="Search" />
+                    </form>
+                {% endif %}
+
                 <div class="nav-collapse">
                     <ul class="nav pull-right">
                         {% if user.is_authenticated %}
@@ -40,7 +47,6 @@
                         <li><a href="/logout">Logout</a></li>
                         {% endif %}
                     </ul>
-
                 </div>
             </div>
         </div>

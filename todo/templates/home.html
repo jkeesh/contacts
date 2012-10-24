@@ -15,7 +15,7 @@
 		</form>
 	</div>
 
-	<div id="search" class="form">
+<!-- 	<div id="search" class="form">
 		<div class="title">Search</div>
 		<form action="/search" method="get">
 			<div>
@@ -25,12 +25,13 @@
 				<input type="submit" class="btn primary" value="Search!" />
 			</div>
 		</form>
-	</div>
+	</div> -->
 
 </div>
 
 <div class="btn-group filter-buttons" data-toggle="buttons-radio">
   <button class="btn {% if filter == "day" %}active{% endif %}" data-filter="day">Day</button>
+  <button class="btn {% if filter == "twodays" %}active{% endif %}" data-filter="twodays">2 Days</button>
   <button class="btn {% if filter == "week" %}active{% endif %}" data-filter="week">Week</button>
   <button class="btn {% if filter == "twoweeks" %}active{% endif %}" data-filter="twoweeks">2 Weeks</button>
   <button class="btn {% if filter == "month" %}active{% endif %}" data-filter="month">Month</button>

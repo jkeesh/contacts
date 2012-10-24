@@ -145,6 +145,8 @@ def filter(request):
 
         if filter_type == "day":
             delta = datetime.timedelta(hours=1)
+        elif filter_type == "twodays":
+            delta = datetime.timedelta(hours=30)
         elif filter_type == "week":
             delta = datetime.timedelta(weeks=1)
         elif filter_type == "twoweeks":
